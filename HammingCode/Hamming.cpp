@@ -27,6 +27,24 @@ std::vector<bool> Hamming::agregarBitsDeParidad(std::vector<bool> vectorMsj) {
     return msjConParidad;
 }
 
+std::vector<int> Hamming::posDeBitsDeParidad(std::vector<bool> vectorMsj) {
+    int exponente = 0;
+    int i = 0;
+    std::vector<int> posDeBitsDeParidad;
+    while(i < vectorMsj.size()){
+        if (i == 0) {
+            posDeBitsDeParidad.push_back(i);
+            i++;
+        }else if (i == pow(2, exponente)){
+            posDeBitsDeParidad.push_back(i);
+            exponente++;
+        }else{
+            i++;
+        }
+    }
+    return posDeBitsDeParidad;
+}
+
 std::vector<bool> Hamming::modificarBitEnPos(std::vector<bool> vectorMsj, int pos) {
     if(pos < 0 or pos >= vectorMsj.size()){
         throw std::domain_error( "ERROR: Posición inválida");
@@ -64,6 +82,27 @@ std::vector<bool> Hamming::establecerValoresDeParidad(std::vector<bool> msj) {
     return msj;
 }
 
+std::vector<int> Hamming::posQueVerificaUnBitDeParidad(std::vector<bool> msj, int posBitParidad) {
+    std::vector<int> posiciones;
+    if (posBitParidad == 0) {
+        for (int i = 1; i < msj.size(); ++i) {
+            posiciones.push_back(i);
+        }
+    }else if(!((posBitParidad & (posBitParidad - 1)) == 0) or (posBitParidad >= msj.size())){
+        posiciones.push_back(-1);
+        return posiciones;
+    }else{
+        int n = log2(posBitParidad);
+        for (int j = posBitParidad + 1; j < msj.size(); ++j) {
+            if (j & (1 << n)) {
+                posiciones.push_back(j);
+            }
+        }
+    }
+    return posiciones;
+}
+
+
 std::vector<bool> Hamming::establecerValoresDeParidadTotal(std::vector<bool> msj) {
     bool bit = false;
     int cont = 0;
@@ -75,7 +114,7 @@ std::vector<bool> Hamming::establecerValoresDeParidadTotal(std::vector<bool> msj
     return msj;
 }
 
-std::vector<int> Hamming::revisarParidad(std::vector<bool> msj) {
+std::vector<int> Hamming::bitsDeParidadQueDetectanError(std::vector<bool> msj) {
     int exp = 0;
     std::vector<int> bitsDeParidadConError;
     for (int i = 1; i < msj.size(); i++) {
@@ -136,5 +175,35 @@ std::vector<bool> Hamming::setParidad(std::vector<bool> msj, int one_count, int 
     }
     return msj;
 }
+
+int Hamming::seekError(std::vector<bool> msj) {
+    std::vector<int> posConError = bitsDeParidadQueDetectanError(msj);
+    int posError = 0;
+    for (int i = 0; i < posConError.size(); ++i) {
+        posError += posConError[i];
+    }
+    if (posError== 0 and revisarParidadGeneral(msj)){
+        return -1;
+    }else if (posError == 0 and !revisarParidadGeneral(msj)){
+        return 0;
+    }else{
+        return posError;
+    }
+}
+
+bool Hamming::revisarParidadGeneral(std::vector<bool> msj) {
+    int cont = 0;
+    for (int i = 0; i < msj.size(); ++i) {
+        if(msj[i] == 1)
+        cont ++;
+    }
+    if (numeroUnosCumpleParidad(cont))
+        return true;
+    else
+        return false;
+}
+
+
+
 
 
