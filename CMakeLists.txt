@@ -25,10 +25,10 @@ include_directories(${PYTHON_INCLUDE_DIRS})
 find_path(MATPLOTLIB_CPP_INCLUDE_DIRS "matplotlibcpp.h")
 
 
-add_executable(${PROJECT_NAME} main.cpp Interfaz/mainwindow.cpp Interfaz/mainwindow.h Interfaz/mainwindow.ui
+add_executable(${PROJECT_NAME} main.cpp
         HammingCode/Hamming.cpp HammingCode/Hamming.h
         Conversiones/Conversiones.cpp Conversiones/Conversiones.h
-        Gráfico/GraficoNRZI.h)
+        Gráfico/GraficoNRZI.h Interfaz/mainwindow.h Interfaz/mainwindow.cpp)
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(tarea_1 ${PYTHON_LIBRARIES} Python3::NumPy)

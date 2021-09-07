@@ -53,7 +53,7 @@ int Conversiones::Octal_Decimal(int numero){
     list <string> numeros;
     numero = Octal_Decimal(numero);
 
-    while(numero > 16){
+    while(numero > 15){
         numeros.push_front(to_string(numero%16));
         numero = numero/16;
     }
@@ -69,7 +69,7 @@ string Conversiones::Octal_Binario(int numero){
     list <string> numeros;
     numero = Octal_Decimal(numero);
 
-    while(numero > 2){
+    while(numero > 1){
         numeros.push_front(to_string(numero%2));
         numero = numero/2;
     }

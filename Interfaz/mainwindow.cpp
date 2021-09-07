@@ -124,9 +124,9 @@ void MainWindow::on_pushButton_clicked() {
     }
 }
 void MainWindow::on_pushButton_3_clicked() {
-    //-----------------------Para mostrar el grafico NRZI -------------------------------
-    // el numero esta guardando en la variable string numeroBinario
-    //mostrarGrafico(numeroBinario);
+//    -----------------------Para mostrar el grafico NRZI -------------------------------
+//     el numero esta guardando en la variable string numeroBinario
+    mostrarGrafico(numeroBinario);
 }
 void MainWindow::on_tableWidget_2_cellClicked(int row, int column)
 {
@@ -294,5 +294,7 @@ void MainWindow::llenarTabla() {
         }
     }
 }
+
+
 
 

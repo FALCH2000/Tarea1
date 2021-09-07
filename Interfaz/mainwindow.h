@@ -12,7 +12,7 @@
 #include "../Conversiones/Conversiones.h"
 #include <QMessageBox>
 #include "../HammingCode/Hamming.h"
-//#include "../Gráfico/GraficoNRZI.h"
+#include "../Gráfico/GraficoNRZI.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
