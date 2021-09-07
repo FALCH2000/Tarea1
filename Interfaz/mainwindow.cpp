@@ -174,11 +174,11 @@ void MainWindow::on_tableWidget_2_cellClicked(int row, int column)
 
         for(int i=1; i<=rows;i++){
             for(int j=0; j<posBitsError.size();j++){
-                if(i==posBitsError[j]){
-                    ui->tableWidget_2->setItem(i, ui->tableWidget_2->columnCount()-2, new QTableWidgetItem("ERROR"));
+                if(std::pow(2, i-1)==posBitsError[j]){
+                    ui->tableWidget_2->setItem(i+1, ui->tableWidget_2->columnCount()-2, new QTableWidgetItem("ERROR"));
                     break;
                 }else
-                    ui->tableWidget_2->setItem(i, ui->tableWidget_2->columnCount()-2, new QTableWidgetItem("Correcto"));
+                    ui->tableWidget_2->setItem(i+1, ui->tableWidget_2->columnCount()-2, new QTableWidgetItem("Correcto"));
             }
         }
         //Llenar ultima columna
@@ -195,6 +195,9 @@ void MainWindow::on_tableWidget_2_cellClicked(int row, int column)
 
             ui->tableWidget_2->setItem(i+2,ui->tableWidget_2->columnCount()-1,new QTableWidgetItem(qs));
         }
+        for(int i:posBitsError)
+            std::cout<<"Error en bit "<<i<<std::endl;
+
     }
 
 }
