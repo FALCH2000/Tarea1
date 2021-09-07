@@ -44,7 +44,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DQT_NO_KEYWORDS"/>
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
@@ -79,7 +78,6 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-DQT_NO_KEYWORDS"/>
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
