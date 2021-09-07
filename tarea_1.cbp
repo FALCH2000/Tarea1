@@ -122,6 +122,9 @@
 		<Unit filename="/home/rijegaro/Escritorio/Tarea1/Conversiones/Conversiones.h">
 			<Option target="tarea_1"/>
 		</Unit>
+		<Unit filename="/home/rijegaro/Escritorio/Tarea1/Gráfico/GraficoNRZI.cpp">
+			<Option target="tarea_1"/>
+		</Unit>
 		<Unit filename="/home/rijegaro/Escritorio/Tarea1/Gráfico/GraficoNRZI.h">
 			<Option target="tarea_1"/>
 		</Unit>
