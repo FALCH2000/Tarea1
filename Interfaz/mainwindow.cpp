@@ -101,7 +101,7 @@ void MainWindow::on_pushButton_2_clicked()
 
         QString numDecimal=QString::fromStdString(auxiliar);
         QString numHexadecimal=QString::fromStdString(prueba.Octal_Hexadecimal(miNumero));
-        ui->label_5->setText(numBinario);
+
         ui->label_7->setText(numDecimal);
         ui->label_9->setText(numHexadecimal);
         crearHamming();
@@ -109,6 +109,7 @@ void MainWindow::on_pushButton_2_clicked()
         if(ui->label_2->text()=="IMPAR")
             hamming->cambiarTipoParidad(); //Cambia el tipo de paridad
         generarHamming(numeroBinario);
+        ui->label_5->setText(QString::fromStdString(numeroBinario));
         setWidgetTable();
     }else{
         QMessageBox::information(this, "Mensaje", "El numero ingresado no es octal");
@@ -235,7 +236,13 @@ void MainWindow::generarHamming(string x) {
         sizeVec++;
     }
     //-----------------------------------------------------------------------------------
-
+    string nuevaPalabra;
+    for(int i: vec){
+        nuevaPalabra.append(to_string(i));
+    }
+    std::cout<<nuevaPalabra<<std::endl;
+    numeroBinario=nuevaPalabra;
+    
     hamming->print(vec);
     vec = hamming->agregarBitsDeParidad(vec);
     std::cout << "Agregar los bits de paridad (no tienen ningún valor):" << std::endl;
