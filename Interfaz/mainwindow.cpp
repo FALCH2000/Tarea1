@@ -176,13 +176,20 @@ void MainWindow::on_tableWidget_2_cellClicked(int row, int column)
             for(int j=0; j<posBitsError.size();j++){
                 if(std::pow(2, i-1)==posBitsError[j]){
                     ui->tableWidget_2->setItem(i+1, ui->tableWidget_2->columnCount()-2, new QTableWidgetItem("ERROR"));
+                    ui->tableWidget_2->setItem(i+1, ui->tableWidget_2->columnCount()-1, new QTableWidgetItem("1"));
                     break;
-                }else
+                }else{
                     ui->tableWidget_2->setItem(i+1, ui->tableWidget_2->columnCount()-2, new QTableWidgetItem("Correcto"));
+                    ui->tableWidget_2->setItem(i+1, ui->tableWidget_2->columnCount()-1, new QTableWidgetItem("0"));
+                }
+
             }
         }
+        QString errorPos="Error en posicion ";
+        errorPos.append(QString::number(posError));
+        QMessageBox::information(this, "Error", errorPos);
         //Llenar ultima columna
-
+        /*
         int columnVal=1;
         for(int i=0;i<rows-1;i++){
             int counter=0;
@@ -197,7 +204,7 @@ void MainWindow::on_tableWidget_2_cellClicked(int row, int column)
         }
         for(int i:posBitsError)
             std::cout<<"Error en bit "<<i<<std::endl;
-
+        */
     }
 
 }
@@ -221,16 +228,14 @@ void MainWindow::generarHamming(string x) {
     //std::vector<bool> vec{0, 1, 1,0,1,0,1};
     int a = stoi(x, nullptr, 10);
     std::vector<bool> vec=convertirArreglo(a);
-    /*
-    std::cout<<"---numero Binario---"<<a<<" y string"<<x<<std::endl;
-    std::cout<<"---ARREGLO---"<<std::endl;
-    for (int i : resultArray)
-        std::cout << i << ' ';
-    std::cout<<""<<std::endl;
-    std::cout<<"---End---"<<std::endl;
+    //---------------- CONVERTIR A NUMERO MULTIPLO DE 4 BITS-----------------------------
+    int sizeVec= vec.size();
+    while(sizeVec%4!=0){
+        vec.insert(vec.begin(),0);
+        sizeVec++;
+    }
+    //-----------------------------------------------------------------------------------
 
-    std::cout<<"---VUELVE A LA FUNCION---"<<std::endl;
-    */
     hamming->print(vec);
     vec = hamming->agregarBitsDeParidad(vec);
     std::cout << "Agregar los bits de paridad (no tienen ningún valor):" << std::endl;
